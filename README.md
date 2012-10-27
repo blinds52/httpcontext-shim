@@ -24,8 +24,14 @@ Add the `HttpContextHandler` to your configuration's message handler collection 
 but you can defer it up to the point where any downstream handlers require access to HttpContext.
 
 ```csharp
+using HttpContextShim;
+
 HttpConfiguration configuration = HoweverYouGetThis();
+
+// Install the handler
 configuration.MessageHandlers.Add(new HttpContextHandler());
+
+// Do other stuff...
 configuration.Routes.MapHttpRoute(
     name: "DefaultApi",
     routeTemplate: "api/{controller}/{id}",
@@ -36,12 +42,12 @@ configuration.Routes.MapHttpRoute(
 After installing the handler, you just use our `HttpContext` in place of the default:
 
 ```csharp
-// Direct usage
 using HttpContext = HttpContextShim.HttpContext;
+
+// Direct usage
 var items = HttpContext.Current.Items;
 
 // Handler usage by accessing properties
-using HttpContext = HttpContextShim.HttpContext;
 public class MyHandler : DelegatingHandler
 {
     private const string HttpContextProperty = "MS_HttpContext";
