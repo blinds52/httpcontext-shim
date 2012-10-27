@@ -47,7 +47,7 @@ namespace SelfHostExample
             request.RequestUri = new Uri(client.BaseAddress, "api/ping");
 
             var response = client.SendAsync(request).Result;
-            Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            Console.WriteLine(response.RequestMessage);
         }
     }
 }
