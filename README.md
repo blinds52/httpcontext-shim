@@ -1,5 +1,5 @@
 # httpcontext-shim
-## An abstraction for HttpContext that works in self-hosted ASP.NET Web API
+An abstraction for HttpContext that works in self-hosted ASP.NET Web API.
 
 ```powershell
 PM> Install-Package HttpContextShim
@@ -15,7 +15,7 @@ giving you an HttpContext-like interface that works in either mode.
 ### Features
 
 * Provides a stand-in HttpContext that works independently of the hosting environment
-* You can use the HttpContext as if you were in web hosted mode in self host, i.e. `HttpContext.Current.Request.IsLocal` and `HttpContextCurrent.Request.UserHostAddress` are available
+* Access important request variables like `IsLocal` and `UserHostAddress`
 * Easy to opt-in by installing a message handler
 
 ### Usage
