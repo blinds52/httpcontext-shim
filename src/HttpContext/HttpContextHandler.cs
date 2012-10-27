@@ -14,14 +14,22 @@ namespace HttpContextShim
     public class HttpContextHandler : DelegatingHandler
     {
         private const string HttpContextProperty = "MS_HttpContext";
+        
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            object contextPropertyValue;
+            request.Properties.TryGetValue(HttpContextProperty, out contextPropertyValue);
+            var context = contextPropertyValue as HttpContextBase;
+            
+            HttpContext.Current = context != null ? (IHttpContext)new AspNetHttpContext(context) : new SelfHostHttpContext(request); 
             return base.SendAsync(request, cancellationToken).ContinueWith(task =>
             {
-                var context = request.Properties[HttpContextProperty] as HttpContextBase;
-                HttpContext.Current = context != null ? (IHttpContext)new AspNetHttpContext(context) : new SelfHostHttpContext(); 
-                var response = task.Result;
-                return response;
+                var result = task.Result;
+                if(context == null)
+                {
+                    ((SelfHostHttpContext)HttpContext.Current).SetResponse(result);
+                }
+                return result;
             });
         }
     }
