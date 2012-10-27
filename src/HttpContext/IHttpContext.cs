@@ -9,5 +9,6 @@ namespace HttpContextShim
         IHttpRequest Request { get; }
         IHttpResponse Response { get; }
         IDictionary Items { get; }
+        object Inner { get; }
     }
 }

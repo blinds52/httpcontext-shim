@@ -5,6 +5,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpContextShim", "HttpCont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfHostExample", "SelfHostExample\SelfHostExample.csproj", "{5E01D482-26BB-4B15-85DE-538D5B8A9CBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHostExample", "WebHostExample\WebHostExample.csproj", "{166739A4-4939-48EB-B8B4-A2ECE13C9B37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{130120D5-4A80-491C-9338-64E8A13AD448}"
+	ProjectSection(SolutionItems) = preProject
+		..\httpcontext-shim.nuspec = ..\httpcontext-shim.nuspec
+		..\LICENSE.md = ..\LICENSE.md
+		..\pack-nuget.bat = ..\pack-nuget.bat
+		..\push-nuget.bat = ..\push-nuget.bat
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +30,10 @@ Global
 		{5E01D482-26BB-4B15-85DE-538D5B8A9CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E01D482-26BB-4B15-85DE-538D5B8A9CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E01D482-26BB-4B15-85DE-538D5B8A9CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{166739A4-4939-48EB-B8B4-A2ECE13C9B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166739A4-4939-48EB-B8B4-A2ECE13C9B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166739A4-4939-48EB-B8B4-A2ECE13C9B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166739A4-4939-48EB-B8B4-A2ECE13C9B37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

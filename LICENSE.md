@@ -1,4 +1,4 @@
-httpcontext-shim (http://github.com/danielcrenna/httpcontext-shim)
+HttpContextShim (http://github.com/danielcrenna/httpcontext-shim)
 --------------------------------------
 Copyright (c) 2012 Conatus Creative Inc.
 

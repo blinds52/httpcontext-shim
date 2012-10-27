@@ -4,5 +4,6 @@ namespace HttpContextShim
     {
         bool IsLocal { get; }
         string UserHostAddress { get; }
+        object Inner { get; }
     }
 }
