@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using System.Web;
 
 namespace HttpContextShim.WebHost
 {
-    public class AspNetHttpContext : IHttpContext
+    public class AspNetHttpContext : HttpContext
     {
         public AspNetHttpContext(System.Web.HttpContext context)
         {
@@ -23,11 +21,5 @@ namespace HttpContextShim.WebHost
             Items = context.Items;
             Inner = context;
         }
-
-        public DateTime Timestamp { get; private set;  }
-        public IHttpRequest Request { get; private set; }
-        public IHttpResponse Response { get; set; }
-        public IDictionary Items { get; private set; }
-        public object Inner { get; private set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace HttpContextShim
 {
-    public class HttpContext : IHttpContext
+    public abstract class HttpContext : IHttpContext
     {
         private static readonly ReaderWriterLockSlim Lock = new ReaderWriterLockSlim();
         private static volatile IHttpContext _current;
@@ -36,10 +36,10 @@ namespace HttpContextShim
             }
         }
 
-        public DateTime Timestamp { get { return Current.Timestamp; } }
-        public IHttpRequest Request { get { return Current.Request; } }
-        public IHttpResponse Response { get { return Current.Response; }}
-        public IDictionary Items { get { return Current.Items; } }
-        public object Inner { get { return Current.Inner; } }
+        public DateTime Timestamp { get; protected set; }
+        public IHttpRequest Request { get; protected set; }
+        public IHttpResponse Response { get; protected set; }
+        public IDictionary Items { get; protected set; }
+        public object Inner { get; protected set; }
     }
 }
