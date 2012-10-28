@@ -1,5 +1,5 @@
 # httpcontext-shim
-## An abstraction for HttpContext that works in self-hosted ASP.NET Web API
+An abstraction for HttpContext that works in self-hosted ASP.NET Web API.
 
 ```powershell
 PM> Install-Package HttpContextShim
@@ -15,7 +15,7 @@ giving you an HttpContext-like interface that works in either mode.
 ### Features
 
 * Provides a stand-in HttpContext that works independently of the hosting environment
-* You can use the HttpContext as if you were in web hosted mode in self host, i.e. `HttpContext.Current.Request.IsLocal` and `HttpContextCurrent.Request.UserHostAddress` are available
+* Access important request variables like `IsLocal` and `UserHostAddress`
 * Easy to opt-in by installing a message handler
 
 ### Usage
@@ -24,8 +24,14 @@ Add the `HttpContextHandler` to your configuration's message handler collection 
 but you can defer it up to the point where any downstream handlers require access to HttpContext.
 
 ```csharp
+using HttpContextShim;
+
 HttpConfiguration configuration = HoweverYouGetThis();
+
+// Install the handler
 configuration.MessageHandlers.Add(new HttpContextHandler());
+
+// Do other stuff...
 configuration.Routes.MapHttpRoute(
     name: "DefaultApi",
     routeTemplate: "api/{controller}/{id}",
@@ -36,12 +42,12 @@ configuration.Routes.MapHttpRoute(
 After installing the handler, you just use our `HttpContext` in place of the default:
 
 ```csharp
-// Direct usage
 using HttpContext = HttpContextShim.HttpContext;
+
+// Direct usage
 var items = HttpContext.Current.Items;
 
 // Handler usage by accessing properties
-using HttpContext = HttpContextShim.HttpContext;
 public class MyHandler : DelegatingHandler
 {
     private const string HttpContextProperty = "MS_HttpContext";
