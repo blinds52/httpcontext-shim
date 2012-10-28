@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Security.Principal;
 
 namespace HttpContextShim
 {
@@ -9,6 +10,7 @@ namespace HttpContextShim
         IHttpRequest Request { get; }
         IHttpResponse Response { get; }
         IDictionary Items { get; }
+        IPrincipal User { get; }
         object Inner { get; }
     }
 }

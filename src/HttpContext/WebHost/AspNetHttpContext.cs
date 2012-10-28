@@ -10,6 +10,7 @@ namespace HttpContextShim.WebHost
             Request = new AspNetHttpRequest(context.Request);
             Response = new AspNetHttpResponse(context.Response);
             Items = context.Items;
+            User = context.User;
             Inner = context;
         }
 

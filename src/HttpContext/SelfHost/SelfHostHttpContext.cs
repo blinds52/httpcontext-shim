@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Net.Http;
+using System.Threading;
 
 namespace HttpContextShim.SelfHost
 {
@@ -10,6 +11,7 @@ namespace HttpContextShim.SelfHost
         {
             Timestamp = DateTime.Now;
             Items = new ConcurrentDictionary<string, object>();
+            User = Thread.CurrentPrincipal;
             Inner = this;
         }
 

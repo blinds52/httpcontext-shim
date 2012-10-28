@@ -2,7 +2,7 @@
 <package>
     <metadata>
         <id>HttpContextShim</id>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
         <authors>Daniel Crenna</authors>
         <owners>Daniel Crenna</owners>
         <summary>Provides support for the general availability of an HttpContext in either WebHost or SelfHost scenarios.</summary>
