@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Security.Principal;
 using System.Threading;
+using System.Web.Hosting;
+using HttpContextShim.WebHost;
 
 namespace HttpContextShim
 {
@@ -16,7 +18,7 @@ namespace HttpContextShim
                 try
                 {
                     Lock.EnterReadLock();
-                    return _current;
+                    return ResolveContext();
                 }
                 finally
                 {
@@ -35,6 +37,18 @@ namespace HttpContextShim
                     Lock.ExitWriteLock();                    
                 }
             }
+        }
+
+        private static IHttpContext ResolveContext()
+        {
+            var context = _current;
+            if (context != null)
+            {
+                return context;
+            }
+            return context == null && HostingEnvironment.IsHosted
+                       ? new AspNetHttpContext(System.Web.HttpContext.Current)
+                       : null;
         }
 
         public DateTime Timestamp { get; protected set; }
